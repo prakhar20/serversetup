@@ -35,7 +35,7 @@ BLUE='\033[0;34m'
 
 
 if [[ $EUID -ne 0 ]]; then
-   echo "Please Change User To ${RED}Root" 
+   printf "Please Change User To ${RED}Root\n" 
    exit 1
 fi
 
@@ -43,73 +43,73 @@ fi
 apache ()
 {
 	clear
-	echo "Installing ${BLUE}Apache2"
+	echo -e "Installing ${BLUE}Apache2"
 	apt-get install apache2
-	echo "${BLUE}Apache2 Installation ${GREEN}Complete"
+	echo -e "${BLUE}Apache2\033[0m Installation ${GREEN}Complete\033[0m"
 	
 }
 nginx ()
 {
 	clear
-	echo "Installing ${BLUE}Nginx..."
+	echo -e "Installing ${BLUE}Nginx..."
 	apt-get install nginx
-	echo "${BLUE}Nginx.. Installation ${GREEN}Complete!!"
-	echo "You Can Now Configure Nginx"
+	echo -e "${BLUE}Nginx..\033[0m Installation ${GREEN}Complete!! \033[0m";
+	echo -e "You Can Now Configure Nginx"
 }
 
 mariadb ()
 {
 	clear
-	echo "Installing ${BLUE}Maria-Db"	
+	echo -e "Installing ${BLUE}Maria-Db\033[0m"	
 	apt-get install mariadb-server mariadb-client
-	echo "${BLUE}Maria-Db Installation ${GREEN}Complete"
+	echo -e "${BLUE}Maria-Db\033[0m Installation ${GREEN}Complete\033[0m"
 }
 
 php ()
 {
 	clear
-	echo "Installing ${BLUE}PHP Latest Version Avaialble"
+	echo -e "Installing ${BLUE}PHP Latest Version Avaialble\033[0m"
 	apt-get install php-fpm php-mysql
-	echo "Installing ${BLUE}Essential PHP Mods"
+	echo -e "Installing ${BLUE}Essential PHP Mods\033[0m"
 	apt-get install php7.0-curl
-	echo "${BLUE}PHP Installation ${GREEN}Complete"
+	echo -e "${BLUE}PHP\033[0m Installation ${GREEN}Complete\033[0m"
 }
 
 mysql ()
 {
 	clear
-	echo "Installing ${BLUE}Mysql Server"
+	echo -e "Installing ${BLUE}Mysql Server\033[0m"
 	apt-get install mysql-server mysql-client
-	echo "${BLUE}Mysql Installation ${GREEN}Complete"
+	echo -e "${BLUE}Mysql\033[0m Installation ${GREEN}Complete\033[0m"
 }
 
 phpmyadmin ()
 {
 	clear
-	echo "Installing ${BLUE}phpmyadmin"
+	echo -e "Installing ${BLUE}phpmyadmin\033[0m"
 	apt-get install phpmyadmin
 	ln -s /usr/share/phpmyadmin/ /var/www/html
-	echo "${BLUE}Phpmyadmin Installation ${GREEN}Complete"
+	echo -e "${BLUE}Phpmyadmin\033[0m Installation ${GREEN}Complete\033[0m"
 }
 
 
 git ()
 {
 	clear
-	echo "Installing ${BLUE}GIT"
+	echo -e "Installing ${BLUE}GIT\033[0m"
 	apt-get install git
-	echo "${BLUE}GIT Installation ${GREEN}Complete..."
+	echo -e "${BLUE}GIT\033[0m Installation ${GREEN}Complete...\033[0m"
 }
 
 sublime ()
 {
 	clear
-	echo "Getting Sublime For You.."
+	echo -e "Getting Sublime For You.."
 	wget -O /tmp/sublime-text_build-3126_amd64.deb https://download.sublimetext.com/sublime-text_build-3126_amd64.deb
-	echo "Installing ${BLUE}Sublime...."
+	echo -e "Installing ${BLUE}Sublime....\033[0m"
 	dpkg -i /tmp/sublime-text_build-3126_amd64.deb
 	apt-get install -f
-	echo "${BLUE}Sublime Installation ${GREEN}Complete"
+	echo -e "${BLUE}Sublime\033[0m Installation ${GREEN}Complete\033[0m"
 }
 
 
@@ -117,24 +117,24 @@ sublime ()
 chrome ()
 {
 	clear
-	echo "Getting Chrome For You"
+	echo -e "Getting Chrome For You"
 	wget -O /tmp/google-chrome-stable_current_amd64.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-	echo "Installing.${BLUE}..."
+	echo -e "Installing.${BLUE}Chrome...\033[0m"
 	dpkg -i /tmp/google-chrome-stable_current_amd64.deb
 	apt-get install -f
-	echo "${BLUE}Chrome Installation ${GREEN}Complete"
+	echo -e "${BLUE}Chrome\033[0m Installation ${GREEN}Complete\033[0m"
 }
 
 mozilla ()
 {
 	clear	
-	echo "Getting Firefox For You"
+	echo -e "Getting Firefox For You"
 	wget -O /tmp/firefox-54.0b7.tar.bz2 http://ftp.mozilla.org/pub/firefox/releases/54.0b7/linux-x86_64/en-US/firefox-54.0b7.tar.bz2
-	echo "Installing.${BLUE}..."
+	echo -e "Installing.${BLUE}Mozilla...\033[0m"
 	mv /tmp/firefox-54.0b7.tar.bz2 /opt
 	tar xvjf firefox-54.0b7.tar.bz2
 	ln -s /opt/firefox/firefox /usr/bin/firefox
-	echo "${BLUE}Firefox Installation ${GREEN}Complete"
+	echo -e "${BLUE}Firefox\033[0m Installation ${GREEN}Complete\033[0m"
 
 }
 
@@ -143,7 +143,7 @@ mozilla ()
 restart ()
 {
 clear
-echo "Your Services Will Restart Now And Your ${RED}/tmp will be ${GREEn}cleared"
+echo -e "Your Services Will Restart Now And Your ${RED}/tmp\033[0m will be ${GREEN}cleared\033[0m"
 service apache2 restart
 service nginx restart
 service php-fpm restart
@@ -161,12 +161,12 @@ rm -rf /tmp/*
 browser ()
 {
 	clear 
-	echo "Please Select Your Browser"
-	echo "[1]Chrome"
-	echo "[2]Mozilla"
-	echo "[3]Both"
-	echo "[4]Skip This Step"
-	echo "Option:: "
+	echo -e "Please Select Your Browser"
+	echo -e "[1]Chrome"
+	echo -e "[2]Mozilla"
+	echo -e "[3]Both"
+	echo -e "[4]Skip This Step"
+	echo -e "Option:: "
 	while true; do
     read -p "" opt
 	    case $opt in
@@ -174,16 +174,16 @@ browser ()
 	        [2]* ) mozilla; break;;
 	        [3]* ) chrome; mozilla; break;;
 	        [4]* ) break;;
-	        * ) echo "Please answer from options.";;
+	        * ) echo -e "Please answer from options.";;
 	    esac
 	done	
 }
 
 database ()
 {
-	echo "Enter"
-	echo "[1] for Maria-Db"
-	echo "[2] for MySql"
+	echo -e "Enter"
+	echo -e "[1] for Maria-Db"
+	echo -e "[2] for MySql"
 
 	while true; do
 
@@ -191,7 +191,7 @@ database ()
 	    case $yn in
 	        [1]* ) mariadb; break;;
 	        [2]* ) mysql; break;;
-	        * ) echo "Please answer from options Available \n";;
+	        * ) echo -e "Please answer from options Available \n";;
 		esac
 	done
 }
@@ -224,10 +224,10 @@ Lamp ()
 
 }
 
-echo "Enter"
-echo "[1] for LEMP"
-echo "[2] for LAMP"
-echo "OR Type exit To Quit"
+echo -e "Enter"
+echo -e "[1] for LEMP"
+echo -e "[2] for LAMP"
+echo -e "OR Type exit To Quit"
 
 while true; do
 
@@ -236,7 +236,7 @@ while true; do
         [1]* ) Lemp; break;;
         [2]* ) Lamp; break;;
 		[exitEXITExit]* ) exit;;
-        * ) echo "Please answer from options ${BLUE}Available \n";;
+        * ) echo -e "Please answer from options Available \n";;
 	esac
 done
 
@@ -247,7 +247,7 @@ while true; do
     case $yn in
         [Yy]* ) browser; break;;
         [Nn]* ) break;;
-        * ) echo "Please answer yes or no.";;
+        * ) echo -e "Please answer yes or no.";;
     esac
 done
 
@@ -257,7 +257,7 @@ while true; do
     case $yn in
         [Yy]* ) ide; break;;
         [Nn]* ) break;;
-        * ) echo "Please answer yes or no.";;
+        * ) echo -e "Please answer yes or no.";;
     esac
 done
 
@@ -270,7 +270,7 @@ while true; do
     case $yn in
         [Yy]* ) restart; break;;
         [Nn]* ) exit;;
-        * ) echo "Please answer yes or no.";;
+        * ) echo -e "Please answer yes or no.";;
     esac
 done
 
