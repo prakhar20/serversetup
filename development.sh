@@ -18,6 +18,7 @@
 #		Mysql
 #		Php 
 #		Phpmyadmin
+#		GIT
 #		Sublime
 #		Mozilla
 #		Chrome
